@@ -30,13 +30,13 @@ var characters = [
   }
 ]
 // Global Variables
-var gameActive = false;
+// var gameActive = false;
 var characterChosen = false;
+var defenderChosen = false;
 
-
+// Function to create the character cards
 var createCharDiv = function (character) {
   var characterContainer = $('<div class="characterCard">');
-  // add an id based on the object name
   characterContainer.attr('id', character.name);
   var characterTitle = $("<h3>");
   characterTitle.text(character.name);
@@ -48,48 +48,67 @@ var createCharDiv = function (character) {
   $("#startingCharacters").append(characterContainer);
 }
 
-// create a loop to create each characterCard based on the array of objects
+// Loop to add each character card on screen
 for (let i = 0; i < characters.length; i++) {
   createCharDiv(characters[i]);
 }
 
+// Function to move chosen character to yourCharacter div
+// var chooseCharacter = function(){
+//   $("#yourCharacter").append($(????))
+// }
+// Ask a TA!! Not currently necessary
+
 $(".characterCard").on("click", function (event) {
   var name = $(event.target).attr('id');
   console.log(name);
-  if (gameActive === false) {
-    gameActive = true;
+  if (characterChosen === false) {
     if (name === "Tartarus") {
       console.log("Tart");
       $("#yourCharacter").append($("#Tartarus"));
-      console.log("I got tart to move");
-      characterChosen = true;
+      console.log("I got tart to be a character");
+      characterChosen = "Tartarus";
     } else if (name === "Johnson") {
       console.log("John");
       $("#yourCharacter").append($("#Johnson"));
-      console.log("I got Johnny to move");
-      characterChosen = true;
+      console.log("I got Johnny to be a character");
+      characterChosen = "Johnson";
     } else if (name === "MasterChief") {
       console.log("Chief");
       $("#yourCharacter").append($("#MasterChief"));
-      console.log("I got chief to move");
-      characterChosen = true;
+      console.log("I got chief to be a character");
+      characterChosen = "MasterChief";
     } else {
-      if (name === "Arbiter") {
-        console.log("Arby");
-        $("#yourCharacter").append($("#Arbiter"));
-        console.log("I got Arby to move");
-        characterChosen = true;
+      console.log("Arby");
+      $("#yourCharacter").append($("#Arbiter"));
+      console.log("I got Arby to be a character");
+      characterChosen = "Arbiter";
+    }
+  } else {
+    // whatever you clicked's name will be an enemy.
+    // move that enemy to the enemy div.
+    if (defenderChosen === false) {
+      if (name === "Tartarus") {
+        console.log("tart is enemy");
+        $("#defender").append($("#Tartarus"));
+        console.log("I got tart to be an enemy!");
+        defenderChosen = "Tartarus";
+      } else if (name === "Johnson") {
+        console.log("John is an enemy");
+        $("#defender").append($("#Johnson"));
+        console.log("I got Johnny to be an enemy!");
+        defenderChosen = "Johnson";
+      } else if (name === "MasterChief") {
+        console.log("Chief is an enemy");
+        $("#defender").append($("#MasterChief"));
+        console.log("I got Chief to be an enemy!");
+        defenderChosen = "MasterChief";
+      } else {
+        console.log("Arby is an enemy");
+        $("#defender").append($("#Arbiter"));
+        console.log("I got Arby to be an enemy!");
+        defenderChosen = "Arbiter";
       }
     }
-
-
-    // move chosen character to yourCharacter div
   }
-
-
-
 })
-
-
-
-// Global functions
