@@ -33,6 +33,8 @@ var characters = [
 // var gameActive = false;
 var characterChosen = false;
 var defenderChosen = false;
+var characterDead = false;
+var defenderDead = false;
 
 // Function to create the character cards
 var createCharDiv = function (character) {
@@ -53,65 +55,86 @@ for (let i = 0; i < characters.length; i++) {
   createCharDiv(characters[i]);
 }
 
+// Attack button function
+
+
+
+
+
 // Function to move chosen character to yourCharacter div
 // var chooseCharacter = function(){
 //   $("#yourCharacter").append($(????))
 // }
 // Ask a TA!! Not currently necessary
 
-$(".characterCard").on("click", function (event) {
-  var name = $(event.target).attr('id');
+
+//When you click a character card the following runs
+$(".characterCard").on("click", function () {
+  var name = $(this).attr('id');
   console.log(name);
   if (characterChosen === false) {
     if (name === "Tartarus") {
-      console.log("Tart");
-      $("#yourCharacter").append($("#Tartarus"));
-      // change the class of the charactercard so that it will stay a character on click
-      $("#Tartarus").attr('id', 'yourCharacterCard');
-      $("#yourCharacterCard").attr('class', 'yourCharacterCard');
-      console.log("I got tart to be a character");
-      characterChosen = "Tartarus";
+      $("#yourCharacter").append($(this));
+      $(this).attr('id', 'yourCharacterCard');
+      $(this).attr('class', 'yourCharacterCard');
+      characterChosen = characters[3];
+      console.log(characterChosen);
     } else if (name === "Johnson") {
-      console.log("John");
-      $("#yourCharacter").append($("#Johnson"));
-      console.log("I got Johnny to be a character");
-      characterChosen = "Johnson";
+      $("#yourCharacter").append($(this));
+      $(this).attr('id', 'yourCharacterCard');
+      $(this).attr('class', 'yourCharacterCard');
+      characterChosen = characters[2];
+      console.log(characterChosen);
     } else if (name === "MasterChief") {
-      console.log("Chief");
-      $("#yourCharacter").append($("#MasterChief"));
-      console.log("I got chief to be a character");
-      characterChosen = "MasterChief";
+      $("#yourCharacter").append($(this));
+      $(this).attr('id', 'yourCharacterCard');
+      $(this).attr('class', 'yourCharacterCard');
+      characterChosen = characters[0];
+      console.log(characterChosen);
     } else if (name === "Arbiter") {
-      console.log("Arby");
-      $("#yourCharacter").append($("#Arbiter"));
-      console.log("I got Arby to be a character");
-      characterChosen = "Arbiter";
+      $("#yourCharacter").append($(this));
+      $(this).attr('id', 'yourCharacterCard');
+      $(this).attr('class', 'yourCharacterCard');
+      characterChosen = characters[1];
+      console.log(characterChosen);
     }
   } else {
-    // whatever you clicked's name will be an enemy.
-    // move that enemy to the enemy div.
     if (defenderChosen === false) {
       if (name === "Tartarus") {
-        console.log("tart is enemy");
-        $("#defender").append($("#Tartarus"));
-        console.log("I got tart to be an enemy!");
-        defenderChosen = "Tartarus";
+        $("#defender").append($(this));
+        defenderChosen = characters[3];
+        console.log(defenderChosen);
       } else if (name === "Johnson") {
-        console.log("John is an enemy");
-        $("#defender").append($("#Johnson"));
-        console.log("I got Johnny to be an enemy!");
-        defenderChosen = "Johnson";
+        $("#defender").append($(this));
+        defenderChosen = characters[2];
+        console.log(defenderChosen);
       } else if (name === "MasterChief") {
-        console.log("Chief is an enemy");
-        $("#defender").append($("#MasterChief"));
-        console.log("I got Chief to be an enemy!");
-        defenderChosen = "MasterChief";
-      } else if (name === "Arbiter"){
-        console.log("Arby is an enemy");
-        $("#defender").append($("#Arbiter"));
-        console.log("I got Arby to be an enemy!");
-        defenderChosen = "Arbiter";
+        $("#defender").append($(this));
+        defenderChosen = characters[0];
+        console.log(defenderChosen);
+      } else if (name === "Arbiter") {
+        $("#defender").append($(this));
+        defenderChosen = characters[1];
+        console.log(defenderChosen);
       }
     }
   }
 })
+
+// When you click the attack button, the following runs
+$("#attack").on("click", function () {
+  console.log("I got here");
+  var attack = function (characterChosen, defenderChosen) {
+    // defender's healthpoints will decrease by characters attack
+    // character's healthpoints will decrease by the defenders counterattack
+    defenderChosen.healthpoints = defenderChosen.healthpoints - characterChosen.attack;
+    characterChosen.healthpoints -= defenderChosen.counterattack;
+    console.log(defenderChosen.healthpoints);
+    console.log(characterChosen.healthpoints);
+  }
+  if (characterChosen === true && defenderChosen === true) {
+    // attack function 
+    attack(characterChosen, defenderChosen);
+  }
+})
+
