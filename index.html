@@ -9,10 +9,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <script
-			  src="https://code.jquery.com/jquery-3.3.1.js"
-			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-			  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
   <title>Halo RPG</title>
 </head>
 
@@ -26,45 +24,49 @@
       <div class="col-md-6">
         <h1>Your Character</h1>
       </div>
-      <div class="col-md-6 yourCharacter">
-
+      <div class="col-md-6" id="yourCharacter">
+        // your character goes here
       </div>
     </div>
+  </div>
 
-    <div class="row">
+  <div class="row">
+    <div class="col-md-6">
       <h1> Starting Characters </h1>
-      <div id="startingCharacters" class="col">
+      <div class="col-md-6" id="startingCharacters">
+        // starting characters go here
       </div>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col">
-        <h1>Enemies Available to Attack</h1>
-      </div>
+  <div class="row">
+    <div class="col">
+      <h1>Enemies Available to Attack</h1>
     </div>
+  </div>
 
 
-    <div class="row">
-      <div class="col">
-        <h1>Attack Section</h1>
-      </div>
+  <div class="row">
+    <div class="col">
+      <h1>Attack Section</h1>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="btn btn-primary" id="attack">Attack</div>
+  <div class="row">
+    <div class="btn btn-primary" id="attack">Attack</div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1>Defender</h1>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col">
-        <h1>Defender</h1>
-      </div>
-    </div>
+  <div class="row">
+    <div class="defender col">Defender will go here</div>
 
-    <div class="row">
-      <div class="defender col">Defender will go here</div>
-
-      <p id="you-attacked">You attacked text...hidden by default</p>
-    </div>
+    <p id="you-attacked">You attacked text...hidden by default</p>
+  </div>
   </div>
 </body>
 <script src="assets/javascript/game.js"></script>

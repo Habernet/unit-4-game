@@ -1,7 +1,7 @@
 // An array of objects representing the characters
 var characters = [
   {
-    name: "Master Chief",
+    name: "MasterChief",
     healthpoints: 200,
     attack: 5,
     counterattack: 8,
@@ -29,10 +29,12 @@ var characters = [
     imgURL: "assets/images/tartarus.jpg"
   }
 ]
+// Global Variables
 var gameActive = false;
+var characterChosen = false;
 
 
-var createCharDiv = function(character){
+var createCharDiv = function (character) {
   var characterContainer = $('<div class="characterCard">');
   // add an id based on the object name
   characterContainer.attr('id', character.name);
@@ -47,19 +49,42 @@ var createCharDiv = function(character){
 }
 
 // create a loop to create each characterCard based on the array of objects
-for (let i = 0; i < characters.length; i++){
+for (let i = 0; i < characters.length; i++) {
   createCharDiv(characters[i]);
 }
 
-$(".characterCard").on("click", function(event){
-  name = $(event.target).attr('id');
+$(".characterCard").on("click", function (event) {
+  var name = $(event.target).attr('id');
   console.log(name);
-  if(gameActive === false){
+  if (gameActive === false) {
     gameActive = true;
-    
-    
-    // move chosen character to yourCharacter div
+    if (name === "Tartarus") {
+      console.log("Tart");
+      $("#yourCharacter").append($("#Tartarus"));
+      console.log("I got tart to move");
+      characterChosen = true;
+    } else if (name === "Johnson") {
+      console.log("John");
+      $("#yourCharacter").append($("#Johnson"));
+      console.log("I got Johnny to move");
+      characterChosen = true;
+    } else if (name === "MasterChief") {
+      console.log("Chief");
+      $("#yourCharacter").append($("#MasterChief"));
+      console.log("I got chief to move");
+      characterChosen = true;
+    } else {
+      if (name === "Arbiter") {
+        console.log("Arby");
+        $("#yourCharacter").append($("#Arbiter"));
+        console.log("I got Arby to move");
+        characterChosen = true;
+      }
     }
+
+
+    // move chosen character to yourCharacter div
+  }
 
 
 
