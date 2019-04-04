@@ -66,6 +66,9 @@ $(".characterCard").on("click", function (event) {
     if (name === "Tartarus") {
       console.log("Tart");
       $("#yourCharacter").append($("#Tartarus"));
+      // change the class of the charactercard so that it will stay a character on click
+      $("#Tartarus").attr('id', 'yourCharacterCard');
+      $("#yourCharacterCard").attr('class', 'yourCharacterCard');
       console.log("I got tart to be a character");
       characterChosen = "Tartarus";
     } else if (name === "Johnson") {
@@ -78,7 +81,7 @@ $(".characterCard").on("click", function (event) {
       $("#yourCharacter").append($("#MasterChief"));
       console.log("I got chief to be a character");
       characterChosen = "MasterChief";
-    } else {
+    } else if (name === "Arbiter") {
       console.log("Arby");
       $("#yourCharacter").append($("#Arbiter"));
       console.log("I got Arby to be a character");
@@ -103,7 +106,7 @@ $(".characterCard").on("click", function (event) {
         $("#defender").append($("#MasterChief"));
         console.log("I got Chief to be an enemy!");
         defenderChosen = "MasterChief";
-      } else {
+      } else if (name === "Arbiter"){
         console.log("Arby is an enemy");
         $("#defender").append($("#Arbiter"));
         console.log("I got Arby to be an enemy!");
