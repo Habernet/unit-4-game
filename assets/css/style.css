@@ -1,8 +1,14 @@
-
-body{
+* {
     box-sizing: border-box;
 }
-img{
+
+body {
+    background-image: url("/assets/images/Halo.jpg");
+    width: auto;
+    height: auto;
+}
+
+img {
     display: block;
     margin: 0 auto;
     height: 100px;
@@ -10,24 +16,26 @@ img{
     padding: 5px;
 }
 
-h3, p{
+h3, p {
     text-align: center;
     color: gold;
 }
 
-.characterCard{
+.characterCard {
     border: 4px solid green;
     height: 200px;
     width: 200px;
     margin: 0 10px 10px 0;
 }
-.yourCharacterCard{
+
+.yourCharacterCard {
     border: 4px solid black;
     height: 200px;
     width: 200px;
     margin: 0 10px 10px 0;
 }
-.yourDefenderCard{
+
+.yourDefenderCard {
     border: 4px solid black;
     background-color: red;
     height: 200px;
