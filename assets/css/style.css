@@ -1,13 +1,14 @@
 * {
     box-sizing: border-box;
 }
-body { 
-    background: url("https://i.redd.it/vel6tdm5rn521.png") no-repeat center center fixed; 
+
+body {
+    background: url("https://i.redd.it/vel6tdm5rn521.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  }
+}
 
 img {
     display: block;
@@ -16,7 +17,7 @@ img {
     width: 125px;
 }
 
-h1{
+h1 {
     color: goldenrod;
 }
 
@@ -48,13 +49,25 @@ h3, p {
     margin: 0 10px 10px 0;
 }
 
-#bannertext{
+#bannertext {
     color: aquamarine;
-    font-size:  30px;
+    font-size: 30px;
 }
-#main-page{
+
+#main-page {
     width: 1024px;
     height: auto;
     padding: 50px;
     margin: 25 auto 0;
+}
+
+#attackSection {
+    border-bottom: 10px solid goldenrod;
+    text-align: center;
+}
+
+#arena {
+    border-width: 10px;
+    border-style: solid;
+    border-image: linear-gradient( to bottom, #bd9a55, rgba(0, 0, 0, 0)) 1 100%;
 }
