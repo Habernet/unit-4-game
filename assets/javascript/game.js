@@ -29,10 +29,16 @@ var characters = [
     imgURL: "assets/images/tartarus.jpg"
   }
 ]
+/// FOUND THIS ON THE HOMEWORK IT WILL BE HELPFUL HERE!!
+// function displayImage() {
+//   $("#image-holder").html("<img src=" + images[count] + " width='400px'>");
+// }
+
+
 // Global Variables
 // var gameActive = false;
-var characterChosen = false;
-var defenderChosen = false;
+var characterChosen;
+var defenderChosen;
 var characterDead = false;
 var defenderDead = false;
 
@@ -44,7 +50,7 @@ var createCharDiv = function (character) {
   characterTitle.text(character.name);
   var characterImage = $("<img>");
   characterImage.attr("src", character.imgURL);
-  var characterHealthPoints = $("<p>");
+  var characterHealthPoints = $('<p class="healthpoints">');
   characterHealthPoints.text(character.healthpoints);
   characterContainer.append(characterTitle, characterImage, characterHealthPoints);
   $("#startingCharacters").append(characterContainer);
@@ -56,66 +62,56 @@ for (let i = 0; i < characters.length; i++) {
 }
 
 // Attack button function
+function attack(attacker, defender) {
+  console.log("defender " + defender);
+  console.log("attacker " + attacker);
+  defender.healthpoints -= attacker.attack;
+  attacker.healthpoints -= defender.counterattack;
+  console.log("defender healthpoints " + defender.healthpoints);
+  console.log("attacker healthpoints " + attacker.healthpoints);
+  // increase attack of the attacker THIS MAY NEED WORK HERE
+  var attackIncrementer = attacker.attack;
+  console.log("Attack is " + attacker.attack);
+  attacker.attack = attacker.attack + attackIncrementer;
+  console.log("Attack is now " + attacker.attack);
+
+  // update the attacker healthpoints and the defender healthpoints on the page
+  $(".p")
+}
+
+function battleOutcome() {
+  if (defenderChosen.healthpoints <= 0) {
+    defenderDead = true;
+  }
+  if (characterChosen.healthpoints <= 0) {
+    characterDead = true;
+  }
+}
 
 
-
-
-
-// Function to move chosen character to yourCharacter div
-// var chooseCharacter = function(){
-//   $("#yourCharacter").append($(????))
-// }
-// Ask a TA!! Not currently necessary
-
-
-//When you click a character card the following runs
+//When you click a character card the following runs to decide if it's your char or an enemy
 $(".characterCard").on("click", function () {
   var name = $(this).attr('id');
-  console.log(name);
-  if (characterChosen === false) {
-    if (name === "Tartarus") {
-      $("#yourCharacter").append($(this));
-      $(this).attr('id', 'yourCharacterCard');
-      $(this).attr('class', 'yourCharacterCard');
-      characterChosen = characters[3];
-      console.log(characterChosen);
-    } else if (name === "Johnson") {
-      $("#yourCharacter").append($(this));
-      $(this).attr('id', 'yourCharacterCard');
-      $(this).attr('class', 'yourCharacterCard');
-      characterChosen = characters[2];
-      console.log(characterChosen);
-    } else if (name === "MasterChief") {
-      $("#yourCharacter").append($(this));
-      $(this).attr('id', 'yourCharacterCard');
-      $(this).attr('class', 'yourCharacterCard');
-      characterChosen = characters[0];
-      console.log(characterChosen);
-    } else if (name === "Arbiter") {
-      $("#yourCharacter").append($(this));
-      $(this).attr('id', 'yourCharacterCard');
-      $(this).attr('class', 'yourCharacterCard');
-      characterChosen = characters[1];
-      console.log(characterChosen);
+  if (!characterChosen) {
+    for (let i = 0; i < characters.length; i++) {
+      if (name === characters[i].name) {
+        console.log(this);
+        $("#yourCharacter").append($(this));
+        $(this).attr('id', 'yourCharacterCard');
+        $(this).attr('class', 'yourCharacterCard');
+        characterChosen = characters[i];
+      }
     }
   } else {
-    if (defenderChosen === false) {
-      if (name === "Tartarus") {
-        $("#defender").append($(this));
-        defenderChosen = characters[3];
-        console.log(defenderChosen);
-      } else if (name === "Johnson") {
-        $("#defender").append($(this));
-        defenderChosen = characters[2];
-        console.log(defenderChosen);
-      } else if (name === "MasterChief") {
-        $("#defender").append($(this));
-        defenderChosen = characters[0];
-        console.log(defenderChosen);
-      } else if (name === "Arbiter") {
-        $("#defender").append($(this));
-        defenderChosen = characters[1];
-        console.log(defenderChosen);
+    if (!defenderChosen) {
+      for (let i = 0; i < characters.length; i++) {
+        if (name === characters[i].name) {
+          console.log(this);
+          $("#defender").append($(this));
+          $(this).attr('id', 'yourDefenderCard');
+          $(this).attr('class', 'yourDefenderCard');
+          defenderChosen = characters[i];
+        }
       }
     }
   }
@@ -123,18 +119,15 @@ $(".characterCard").on("click", function () {
 
 // When you click the attack button, the following runs
 $("#attack").on("click", function () {
-  console.log("I got here");
-  var attack = function (characterChosen, defenderChosen) {
-    // defender's healthpoints will decrease by characters attack
-    // character's healthpoints will decrease by the defenders counterattack
-    defenderChosen.healthpoints = defenderChosen.healthpoints - characterChosen.attack;
-    characterChosen.healthpoints -= defenderChosen.counterattack;
-    console.log(defenderChosen.healthpoints);
-    console.log(characterChosen.healthpoints);
-  }
-  if (characterChosen === true && defenderChosen === true) {
-    // attack function 
+  if (characterChosen && defenderChosen) {
     attack(characterChosen, defenderChosen);
+    battleOutcome();
+    if (defenderDead) {
+      // remove him from the page
+      // his class needs to be changed when moved to defender position so this is easy
+    } else if (characterDead) {
+      alert("You lose!");
+      // gameactive = false, reset game
+    }
   }
 })
-
