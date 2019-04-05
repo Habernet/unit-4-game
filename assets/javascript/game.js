@@ -40,9 +40,8 @@ var characterChosen;
 var defenderChosen;
 var characterDead = false;
 var defenderDead = false;
-var allDefendersDead = false;
 var gameActive = false;
-var baseAttack= 0;
+var baseAttack = 0;
 
 // Function to create the character cards
 var createCharDiv = function (character) {
@@ -65,21 +64,16 @@ for (let i = 0; i < characters.length; i++) {
 
 // Attack button function
 function attack(attacker, defender) {
-  console.log("defender " + defender);
-  console.log("attacker " + attacker);
   defender.healthpoints -= attacker.attack;
   attacker.healthpoints -= defender.counterattack;
   console.log("defender healthpoints " + defender.healthpoints);
   console.log("attacker healthpoints " + attacker.healthpoints);
-  console.log("Attack is " + attacker.attack);
   attacker.attack = attacker.attack + baseAttack;
-  console.log("Attack is now " + attacker.attack);
 
   // update the attacker healthpoints and the defender healthpoints on the page
-  
-  // $("#yourDefenderCard").$("p").text(defender.healthpoints);
-  $("#yourDefenderCard").remove("p").append(defender.healthpoints);
 
+  // $("#yourDefenderCard").$("p").text(defender.healthpoints);
+  $("#yourDefenderCard").remove(".healthpoints").append('<p class="healthpoints">' + defender.healthpoints + '</p>');
   // update the text on the very bottom of the page to tell the player what is going on
   // the above doesn't work!! ^^^
 
@@ -93,10 +87,14 @@ function battleOutcome() {
     characterDead = true;
   }
 }
-function areDefendersLeft(){
-
-}
-
+// function allDefendersDead() {
+//   // checks if anyone is left in enemies available div..returns true if noone is left
+//   if(//enemies available div is empty){
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 
 //When you click a character card the following runs to decide if it's your char or an enemy
 $(".characterCard").on("click", function () {
@@ -105,12 +103,12 @@ $(".characterCard").on("click", function () {
   if (!characterChosen) {
     for (let i = 0; i < characters.length; i++) {
       if (name === characters[i].name) {
+        $("#startingText").remove();
         $("#yourCharacter").append($(this));
         $(this).attr('id', 'yourCharacterCard');
         $(this).attr('class', 'yourCharacterCard');
         characterChosen = characters[i];
         baseAttack = characterChosen.attack;
-        // move everyone else to the enemiesavailablediv
         $(".enemiesAvailable").append($(".characterCard"));
       }
     }
@@ -138,15 +136,17 @@ $("#attack").on("click", function () {
       console.log("HE DEAD");
       defenderChosen = false;
       defenderDead = false;
-      if(allDefendersDead){
+      if (allDefendersDead()) {
         alert("You win!");
+        gameActive = false;
+        // set a timeout to reset the game
+      } else if (characterDead) {
+        alert("You died!");
+        gameActive = false;
+        // set a timeout to reset the game
       }
-    } else if (characterDead) {
-      alert("You lose!");
-      gameActive = false;
-      // gameactive = false, reset game
     }
-  } else {
-    alert("You need to choose a character and an enemy!");
+  } else{
+    alert("You need to select an enemy to attack!");
   }
 })
