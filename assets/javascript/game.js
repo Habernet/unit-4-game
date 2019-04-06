@@ -2,29 +2,29 @@
 var characters = [
   {
     name: "MasterChief",
-    healthpoints: 100,
-    attack: 10,
+    healthpoints: 130,
+    attack: 8,
     counterattack: 5,
     imgURL: "assets/images/masterchief.png"
   },
   {
     name: "Arbiter",
-    healthpoints: 150,
-    attack: 15,
-    counterattack: 4,
+    healthpoints: 100,
+    attack: 12,
+    counterattack: 5,
     imgURL: "assets/images/arbiter.png"
   },
   {
     name: "Johnson",
-    healthpoints: 185,
-    attack: 30,
-    counterattack: 10,
+    healthpoints: 150,
+    attack: 4,
+    counterattack: 20,
     imgURL: "assets/images/johnson.jpg"
   },
   {
     name: "Tartarus",
-    healthpoints: 200,
-    attack: 50,
+    healthpoints: 125,
+    attack: 8,
     counterattack: 30,
     imgURL: "assets/images/tartarus.jpg"
   }
@@ -41,7 +41,7 @@ var defenderChosen;
 var characterDead = false;
 var defenderDead = false;
 var baseAttack = 0;
-gameActive = true;
+var gameActive = true;
 
 // Function to create the character cards
 var createCharDiv = function (character) {
@@ -69,11 +69,8 @@ function attack(attacker, defender) {
   console.log("defender healthpoints " + defender.healthpoints);
   console.log("attacker healthpoints " + attacker.healthpoints);
   attacker.attack = attacker.attack + baseAttack;
-
-  // update the attacker healthpoints and the defender healthpoints on the page
-
-  // $("#yourDefenderCard").$("p").text(defender.healthpoints);
-  $("#yourDefenderCard").remove(".healthpoints").append('<p class="healthpoints">' + defender.healthpoints + '</p>');
+  $("#defender").find(".healthpoints").html("<p>" + defender.healthpoints + "</p>");
+  $("#yourCharacter").find(".healthpoints").html("<p>" + attacker.healthpoints + "</p>");
 }
 
 function battleOutcome() {
@@ -83,17 +80,17 @@ function battleOutcome() {
   if (characterChosen.healthpoints <= 0) {
     characterDead = true;
   }
-   // update the text on the very bottom of the page to tell the player what is going on
   $("#you-attacked").text('You attacked ' + defenderChosen.name + ' for ' + characterChosen.attack + ' damage. '
-  + defenderChosen.name + ' attacked you back for ' + defenderChosen.counterattack + ' damage.' )
+    + defenderChosen.name + ' attacked you back for ' + defenderChosen.counterattack + ' damage.')
 
 }
 function allDefendersDead() {
   // checks if anyone is left in enemies available div..returns true if noone is left
-  if($("#enemiesAvailable").children().length > 0){
-    return false;
-  } else {
+  if ($(".enemiesAvailable").children().length == 0) {
     return true;
+  }
+  else {
+    return false;
   }
 }
 
@@ -143,11 +140,15 @@ $("#attack").on("click", function () {
         // set a timeout to reset the game
       } else if (characterDead) {
         alert("You died!");
+        $("#main-page").hide();
         gameActive = false;
         // set a timeout to reset the game
       }
+    } else if (characterDead) {
+      alert("You died!")
+      $("#main-page").hide();
     }
-  } else{
+  } else {
     alert("You need to select an enemy to attack!");
   }
 })
@@ -155,7 +156,6 @@ $("#attack").on("click", function () {
 
 //TO-DO
 // 1. Create a game reset function. Will make use of gameActive variable.
-// 2. Update the healhtpoints of character and defender on the page properly.
-// 3. Do a timeout function for the game reset function
-// 4. Fix allDefendersDead function to check if anyone is still remaining in the enemiesAvailable div.
-// This is used to control if the game is won.
+// 2. Do a timeout function for the game reset function. 
+// 3. Wins and losses on page!!
+ 

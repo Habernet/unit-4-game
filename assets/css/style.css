@@ -19,11 +19,12 @@ img {
 
 h1 {
     color: goldenrod;
+    font-size: 20px;
 }
 
 h3, p {
     text-align: center;
-    color: gold;
+    color: black;
 }
 
 .characterCard {
@@ -51,7 +52,8 @@ h3, p {
 
 #bannertext {
     color: aquamarine;
-    font-size: 30px;
+    font-size: 50px;
+    text-align: center;
 }
 
 #main-page {
@@ -71,3 +73,19 @@ h3, p {
     border-style: solid;
     border-image: linear-gradient( to bottom, #bd9a55, rgba(0, 0, 0, 0)) 1 100%;
 }
+
+#you-attacked {
+    color:white;
+}
+
+
+/* TO DO LIST
+1. Style the character cards 
+2. Style the text so it is more readable
+3. Give borders to areas so the game is easily defined visually
+4. Change the styles of the yourCharacterCard and yourDefenderCard so it is easy to see what 
+    is actually happening on the page.
+
+
+
+*/
