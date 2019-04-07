@@ -157,5 +157,7 @@ $("#attack").on("click", function () {
 //TO-DO
 // 1. Create a game reset function. Will make use of gameActive variable.
 // 2. Do a timeout function for the game reset function. 
-// 3. Wins and losses on page!!
+
+// 3. Do the README file!
+
  
